@@ -1,0 +1,13 @@
+import express from "express";
+import auth from "../middleware/auth.js";
+import { analyzeURL, deleteAnalysis, getAnalyses, getAnalysis, getAnalysisComparison } from "../controllers/analysisController.js";
+
+const analysisRouter = express.Router();
+
+analysisRouter.post('/analyze', auth, analyzeURL);
+analysisRouter.get('/list', auth,getAnalyses);
+analysisRouter.get("/:id/comparison", auth, getAnalysisComparison);
+analysisRouter.get('/:id', auth, getAnalysis);
+analysisRouter.delete('/:id', auth, deleteAnalysis);
+
+export default analysisRouter;
